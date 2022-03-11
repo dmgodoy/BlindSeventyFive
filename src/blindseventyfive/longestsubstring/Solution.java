@@ -1,4 +1,4 @@
-package longestsubstring;
+package blindseventyfive.longestsubstring;
 
 import java.util.HashSet;
 import java.util.Set;

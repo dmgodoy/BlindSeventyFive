@@ -1,4 +1,4 @@
-package longestpalindrome;
+package blindseventyfive.longestpalindrome;
 
 class Solution {
     public String longestPalindrome(String s) {

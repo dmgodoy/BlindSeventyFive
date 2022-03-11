@@ -1,4 +1,4 @@
-package palindromelinkedlist;
+package blindseventyfive.palindromelinkedlist;
 
 public class Solution {
 	
