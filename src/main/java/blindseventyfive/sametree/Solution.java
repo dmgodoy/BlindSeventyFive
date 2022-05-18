@@ -1,8 +1,6 @@
 package blindseventyfive.sametree;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -13,7 +11,7 @@ import java.util.Objects;
  * = left; this.right = right; } }
  */
 class Solution {
-    private static class TreeNode {
+    static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -31,22 +29,20 @@ class Solution {
             this.right = right;
         }
 
-        static TreeNode fromList(List<Integer> values) {
+        static TreeNode from(int ...values) {
             Objects.requireNonNull(values);
-            if (values.isEmpty())
+            if (values.length == 0)
                 throw new IllegalArgumentException("List of values is empty.");
-            if (values.size() % 2 == 0)
-                throw new IllegalArgumentException(
-                        "Number of values" + values.size() + "must be odd. Add null to fill empty values.");
             Map<Integer, TreeNode> mapIdxTreeNode = new HashMap<>();
-            for (int i = 0; i < values.size(); i++) {
-                TreeNode n = mapIdxTreeNode.getOrDefault(i, new TreeNode(values.get(i)));
+            for (int i = 0; i < values.length; i++) {
+                TreeNode n = mapIdxTreeNode.computeIfAbsent(i, k -> new TreeNode(values[k]));
                 final int leftIdx = 2 * i + 1;
                 final int rightIdx = 2 * i + 2;
-                n.left = leftIdx < values.size()
-                        ? mapIdxTreeNode.getOrDefault(leftIdx, new TreeNode(values.get(leftIdx))) : null;
-                n.right = rightIdx < values.size()
-                        ? mapIdxTreeNode.getOrDefault(rightIdx, new TreeNode(values.get(rightIdx))) : null;
+                System.out.println(n);
+                n.left = leftIdx < values.length
+                        ? mapIdxTreeNode.computeIfAbsent(leftIdx, k -> new TreeNode(values[k])) : null;
+                n.right = rightIdx < values.length
+                        ? mapIdxTreeNode.computeIfAbsent(rightIdx, k -> new TreeNode(values[k])) : null;
 
             }
             return mapIdxTreeNode.get(0);
@@ -69,8 +65,7 @@ class Solution {
 
     public static void main(String[] args) {
         Solution s = new Solution();
-        //System.out.println(s.isSameTree(TreeNode.fromList(null), TreeNode.fromList(null)));
-        System.out.println(s.isSameTree(TreeNode.fromList(Arrays.asList(1,2,3,4,5)), TreeNode.fromList(Arrays.asList(1,2,3,4,5))));
+        System.out.println(s.isSameTree(TreeNode.from(1,2,3,4,5), TreeNode.from(1,2,3,4,5,6)));
     }
 
 }

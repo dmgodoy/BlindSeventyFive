@@ -1,0 +1,5 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "maven.terminal.useJavaHome": true,
+    "java.jdt.ls.java.home": "/usr/lib/jvm/jdk-11.0.15+10",
+}
